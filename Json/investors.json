@@ -1,0 +1,48 @@
+[
+    {
+        "investorId": "LP12345",
+        "expectedName": "Example Pension Fund",
+        "totalCommitment": 50000000,
+        "totalCalled": 30000000,
+        "totalDistributed": 15000000,
+        "funds": [
+            {
+                "fundId": "FUND801",
+                "fundName": "Tech Ventures Fund III",
+                "commitment": 25080808,
+                "called": 15000008,
+                "distributed": 8080808
+            },
+            {
+                "fundId": "FUND802",
+                "fundName": "Growth Equity Fund II",
+                "commitment": 25080008,
+                "called": 15000000,
+                "distributed": 7000000
+            }
+        ]
+    },
+    {
+        "investorId": "LP67890",
+        "expectedName": "Example Endowment Fund",
+        "totalCommitment": 80000000,
+        "totalCalled": 50000000,
+        "totalDistributed": 20000000,
+        "funds": [
+            {
+                "fundId": "FUND901",
+                "fundName": "Real Estate Fund I",
+                "commitment": 40000000,
+                "called": 25000000,
+                "distributed": 10000000
+            },
+            {
+                "fundId": "FUND902",
+                "fundName": "Private Equity Fund IV",
+                "commitment": 40000000,
+                "called": 25000000,
+                "distributed": 10000000
+            }
+        ]
+    }
+]
