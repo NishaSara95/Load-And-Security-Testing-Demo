@@ -1,0 +1,17 @@
+{"type":"Metric","data":{"name":"checks","type":"rate","contains":"default","thresholds":["rate==1.0"],"submetrics":null},"metric":"checks"}
+{"metric":"checks","type":"Point","data":{"time":"2025-12-31T14:37:46.844151Z","value":1,"tags":{"check":"401 for missing token","group":"","scenario":"default"}}}
+{"metric":"checks","type":"Point","data":{"time":"2025-12-31T14:37:46.844151Z","value":1,"tags":{"check":"Unauthorized message","group":"","scenario":"default"}}}
+{"metric":"checks","type":"Point","data":{"time":"2025-12-31T14:37:46.844827Z","value":1,"tags":{"check":"400 for invalid input","group":"","scenario":"default"}}}
+{"metric":"checks","type":"Point","data":{"time":"2025-12-31T14:37:46.844827Z","value":1,"tags":{"check":"Invalid message","group":"","scenario":"default"}}}
+{"metric":"checks","type":"Point","data":{"time":"2025-12-31T14:37:46.844867Z","value":1,"tags":{"check":"400 for SQL injection","group":"","scenario":"default"}}}
+{"metric":"checks","type":"Point","data":{"time":"2025-12-31T14:37:46.844867Z","value":1,"tags":{"check":"Invalid message for SQL","group":"","scenario":"default"}}}
+{"metric":"checks","type":"Point","data":{"time":"2025-12-31T14:37:46.844969Z","value":1,"tags":{"check":"200 for valid request","group":"","scenario":"default"}}}
+{"metric":"checks","type":"Point","data":{"time":"2025-12-31T14:37:46.844969Z","value":1,"tags":{"check":"Contains investor data","group":"","scenario":"default"}}}
+{"type":"Metric","data":{"name":"data_sent","type":"counter","contains":"data","thresholds":[],"submetrics":null},"metric":"data_sent"}
+{"metric":"data_sent","type":"Point","data":{"time":"2025-12-31T14:37:46.844996Z","value":0,"tags":{"group":"","scenario":"default"}}}
+{"type":"Metric","data":{"name":"data_received","type":"counter","contains":"data","thresholds":[],"submetrics":null},"metric":"data_received"}
+{"metric":"data_received","type":"Point","data":{"time":"2025-12-31T14:37:46.844996Z","value":0,"tags":{"group":"","scenario":"default"}}}
+{"type":"Metric","data":{"name":"iteration_duration","type":"trend","contains":"time","thresholds":[],"submetrics":null},"metric":"iteration_duration"}
+{"metric":"iteration_duration","type":"Point","data":{"time":"2025-12-31T14:37:46.844996Z","value":1.899344,"tags":{"group":"","scenario":"default"}}}
+{"type":"Metric","data":{"name":"iterations","type":"counter","contains":"default","thresholds":[],"submetrics":null},"metric":"iterations"}
+{"metric":"iterations","type":"Point","data":{"time":"2025-12-31T14:37:46.844996Z","value":1,"tags":{"group":"","scenario":"default"}}}

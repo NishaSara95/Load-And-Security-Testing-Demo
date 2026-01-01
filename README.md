@@ -1,5 +1,7 @@
 # InvestorFlow Load Testing Demo
 
+[![CI](https://github.com/NishaSara95/Load-And-Security-Testing-Demo/actions/workflows/ci.yml/badge.svg)](https://github.com/NishaSara95/Load-And-Security-Testing-Demo/actions/workflows/ci.yml)
+
 This project demonstrates load testing, security testing, and API validation for the InvestorFlow portfolio summary endpoint using [k6](https://k6.io/). It includes mock simulations, real API tests, and security checks to showcase best practices in performance and security testing.
 
 ## Project Structure
@@ -7,18 +9,20 @@ This project demonstrates load testing, security testing, and API validation for
 ```
 InvestorFlow Demo/
 ├── README.md                          # This file
-├── data/
+├── Json/
 │   └── investors.json                 # Mock investor data for tests
-├── load-tests/
+├── LoadTests/
 │   ├── PortfolioSummaryTest1.js       # Refactored load test with env vars
 │   └── PortfolioSummaryMock.js        # Mock load testing (no network calls)
-├── security-tests/
-│   └── PortfolioSummarySecurity.js    # Security validation tests
-├── public-api/
+├── SecurityTests/
+│   └── PortFolioSummarySecurity.js    # Security validation tests
+├── PublicAPI/
 │   └── PublicAPIDemo.js               # Demo with public JSONPlaceholder API
-└── reports/
-    ├── REPORT.md                      # Detailed project report
-    └── PortfolioSummaryMock_Report.html  # HTML report from mock test
+├── Reports/
+│   └── PortfolioSummaryMock_Report.html  # HTML report from mock test
+└── .github/
+    └── workflows/
+        └── ci.yml                     # GitHub Actions CI/CD pipeline
 ```
 
 ## Prerequisites
@@ -80,6 +84,19 @@ InvestorFlow Demo/
 - **Mock Load Test**: 14,330 iterations, 100% checks passed, P95 response time < 675ms.
 - **Security Tests**: 8/8 checks passed (100% success rate).
 - **Thresholds**: All met (e.g., >95% check rate).
+
+## CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration. The pipeline automatically runs on pushes and pull requests to the `master` branch.
+
+### What it does:
+- Runs load tests (mock with 10 VUs for 30s), security tests, and public API demos.
+- Generates and uploads test reports as artifacts.
+- Ensures code quality by validating test scripts.
+
+### Viewing Results:
+- Go to the [Actions tab](https://github.com/NishaSara95/Load-And-Security-Testing-Demo/actions) in the repository.
+- Check the latest workflow run for logs and downloaded artifacts.
 
 ## Troubleshooting
 

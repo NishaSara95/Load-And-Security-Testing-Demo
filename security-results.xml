@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<testsuites tests="9" failures="0">
+  <testsuite id="0" name="Authorization Tests" tests="2" failures="0">
+    <testcase name="401 for missing token" classname="Authorization Tests" />
+    <testcase name="Unauthorized message" classname="Authorization Tests" />
+  </testsuite>
+  <testsuite id="1" name="Input Validation Tests" tests="4" failures="0">
+    <testcase name="400 for invalid input" classname="Input Validation Tests" />
+    <testcase name="Invalid message" classname="Input Validation Tests" />
+    <testcase name="400 for SQL injection" classname="Input Validation Tests" />
+    <testcase name="Invalid message for SQL" classname="Input Validation Tests" />
+  </testsuite>
+  <testsuite id="2" name="Valid Request Tests" tests="2" failures="0">
+    <testcase name="200 for valid request" classname="Valid Request Tests" />
+    <testcase name="Contains investor data" classname="Valid Request Tests" />
+  </testsuite>
+  <testsuite id="3" name="Thresholds" tests="1" failures="0">
+    <testcase name="checks: rate==1.0" classname="Thresholds" />
+  </testsuite>
+</testsuites>

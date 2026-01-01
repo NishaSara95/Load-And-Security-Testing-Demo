@@ -14,24 +14,26 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
     - name: Setup k6
       uses: grafana/k6-action@v1
 
-    - name: Run Load Test (Mock)
-      run: k6 run --vus 10 --duration 30s LoadTests/PortfolioSummaryMock.js
-
-    - name: Run Security Test
-      run: k6 run SecurityTests/PortFolioSummarySecurity.js
-
-    - name: Run Public API Demo
-      run: k6 run PublicAPI/PublicAPIDemo.js
+    - name: Run All Tests
+      run: npm run test-all
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: k6-results
+        name: test-reports
         path: |
           Reports/
           *.json
-          *.html
+          *.xml
