@@ -87,7 +87,11 @@ InvestorFlow Demo/
 
 ## CI/CD Pipeline
 
-This project uses GitHub Actions for continuous integration. The pipeline automatically runs on pushes and pull requests to the `master` branch.
+Tests are configured to run in Jenkins with:
+- Automated test execution on code push
+- HTML report generation
+- JUnit XML output for test tracking
+- Artifact archiving
 
 ### What it does:
 - Runs load tests (mock with 10 VUs for 30s), security tests, and public API demos.

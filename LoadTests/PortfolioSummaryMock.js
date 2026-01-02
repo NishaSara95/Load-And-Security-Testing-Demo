@@ -15,12 +15,23 @@ const investors = new SharedArray('investors', function () {
 
 // k6 options to simulate load
 export let options = {
+    scenarios: {
+        portfolio_summary_load_test: {
+              executor: 'ramping-vus',
+                startVUs: 0,
+            // QUICK TEST 
+            // stages: [
+            //     { duration: '10s', target: 10 },
+            //     { duration: '10s', target: 0 },
+            // ],
+            // FULL TEST
     stages: [
         { duration: '1m', target: 20 }, // Ramp-up to 20 virtual users
         { duration: '3m', target: 50 }, // Steady state
         { duration: '1m', target: 100 }, // Spike load
         { duration: '1m', target: 0 }, // Ramp-down
     ],
+        }},
     thresholds: {
         'response_time': ['p(95)<2000'],
         'http_req_failed': ['rate<0.01'],

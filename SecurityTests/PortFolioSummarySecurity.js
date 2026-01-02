@@ -10,12 +10,17 @@ const investors = new SharedArray('investors', function () {
 
 // Security-only options 
 export let options = {
-    vus: 1,        // Single virtual user
-    iterations: 1, // Run once
-    thresholds: {
-        'checks': ['rate==1.0'],  // Must pass 100% of checks
-    },
-};
+    scenarios: {
+        security_vulnerability_scan: {
+            executor: 'shared-iterations',  
+            vus: 1,        // Single virtual user
+            iterations: 1, // Run once
+        }},
+            thresholds: {
+                'checks': ['rate==1.0'],  // Must pass 100% of checks
+            },
+        }
+    
 
 // Function to simulate API response for security tests
 function mockApiResponse(investorId, token) {
@@ -35,21 +40,21 @@ function mockApiResponse(investorId, token) {
 
 export default function () {
     console.log('Starting Security Tests...');
-    
+
     // Test data
     const investor = investors[0];  // Use first investor for consistency
     const MOCK_TOKEN = 'MOCK_TOKEN';
-    
+
     group('Authorization Tests', () => {
         // --- Security Test 1: Unauthorized Access ---
         console.log('Test 1: Unauthorized Access');
         let res = mockApiResponse(investor.investorId, null);
-        check(res, { 
+        check(res, {
             '401 for missing token': (r) => r.status === 401,
             'Unauthorized message': (r) => r.body === 'Unauthorized'
         });
     });
-    
+
     group('Input Validation Tests', () => {
         // --- Security Test 2: Input Validation (XSS Prevention) ---
         console.log('Test 2: Input Validation');
@@ -58,7 +63,7 @@ export default function () {
             '400 for invalid input': (r) => r.status === 400,
             'Invalid message': (r) => r.body === 'Invalid investorId'
         });
-        
+
         // --- Security Test 3: SQL Injection Simulation ---
         console.log('Test 3: SQL Injection Simulation');
         res = mockApiResponse("'; DROP TABLE users; --", MOCK_TOKEN);
@@ -67,7 +72,7 @@ export default function () {
             'Invalid message for SQL': (r) => r.body === 'Invalid investorId'
         });
     });
-    
+
     group('Valid Request Tests', () => {
         // --- Security Test 4: Valid Authorized Request ---
         console.log('Test 4: Valid Authorized Request');
@@ -77,7 +82,7 @@ export default function () {
             'Contains investor data': (r) => r.body.includes(investor.investorId)
         });
     });
-    
+
     console.log('Security Tests Completed.');
 }
 
