@@ -4,6 +4,8 @@ import { Trend } from 'k6/metrics';
 import { SharedArray } from 'k6/data';
 import { group } from 'k6';
 import { jUnit } from '../node_modules/k6-junit/index.js';
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.1/index.js";
 
 // Custom metric to simulate response time
 let responseTimeTrend = new Trend('response_time');
@@ -20,17 +22,17 @@ export let options = {
               executor: 'ramping-vus',
                 startVUs: 0,
             // QUICK TEST 
-            // stages: [
-            //     { duration: '10s', target: 10 },
-            //     { duration: '10s', target: 0 },
-            // ],
+            stages: [
+                { duration: '10s', target: 10 },
+                { duration: '10s', target: 0 },
+            ],
             // FULL TEST
-    stages: [
-        { duration: '1m', target: 20 }, // Ramp-up to 20 virtual users
-        { duration: '3m', target: 50 }, // Steady state
-        { duration: '1m', target: 100 }, // Spike load
-        { duration: '1m', target: 0 }, // Ramp-down
-    ],
+    // stages: [
+    //     { duration: '1m', target: 20 }, // Ramp-up to 20 virtual users
+    //     { duration: '3m', target: 50 }, // Steady state
+    //     { duration: '1m', target: 100 }, // Spike load
+    //     { duration: '1m', target: 0 }, // Ramp-down
+    // ],
         }},
     thresholds: {
         'response_time': ['p(95)<2000'],
@@ -72,7 +74,9 @@ export default function () {
 }
 
 export function handleSummary(data) {
-    return {
-        'Reports/load-results.xml': jUnit(data)
+      return {
+        'Reports/load-results.xml': jUnit(data),                    // ← JUnit for Jenkins
+        'Reports/load-report.html': htmlReport(data),               // ← HTML for humans
+        'stdout': textSummary(data, { indent: ' ', enableColors: true }), // ← Console output
     };
 }

@@ -2,6 +2,9 @@ import { check } from 'k6';
 import { SharedArray } from 'k6/data';
 import { group } from 'k6';
 import { jUnit } from '../node_modules/k6-junit/index.js';
+import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.1/index.js";
+
 
 // Load investors mock data
 const investors = new SharedArray('investors', function () {
@@ -12,15 +15,16 @@ const investors = new SharedArray('investors', function () {
 export let options = {
     scenarios: {
         security_vulnerability_scan: {
-            executor: 'shared-iterations',  
+            executor: 'shared-iterations',
             vus: 1,        // Single virtual user
             iterations: 1, // Run once
-        }},
-            thresholds: {
-                'checks': ['rate==1.0'],  // Must pass 100% of checks
-            },
         }
-    
+    },
+    thresholds: {
+        'checks': ['rate==1.0'],  // Must pass 100% of checks
+    },
+}
+
 
 // Function to simulate API response for security tests
 function mockApiResponse(investorId, token) {
@@ -88,6 +92,9 @@ export default function () {
 
 export function handleSummary(data) {
     return {
-        'Reports/security-results.xml': jUnit(data)
+        'Reports/security-results.xml': jUnit(data),
+        'Reports/security-report.html': htmlReport(data),            
+        'stdout': textSummary(data, { indent: ' ', enableColors: true })
+
     };
 }

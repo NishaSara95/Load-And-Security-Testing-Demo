@@ -1,22 +1,19 @@
 {
   "name": "investorflow-demo",
   "version": "1.0.0",
-  "description": "[![CI](https://github.com/NishaSara95/Load-And-Security-Testing-Demo/actions/workflows/ci.yml/badge.svg)](https://github.com/NishaSara95/Load-And-Security-Testing-Demo/actions/workflows/ci.yml)",
+  "description": "InvestorFlow Non-Functional Testing Suite - Performance & Security",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "report": "./node_modules/k6-html-reporter results.json",
-    "security-test": "k6 run SecurityTests/PortFolioSummarySecurity.js && xunit-viewer -r Reports/security-results.xml -o Reports/security-report.html",
-    "load-test": "k6 run LoadTests/PortfolioSummaryMock.js && xunit-viewer -r Reports/load-results.xml -o Reports/load-report.html",
+    "test": "npm run test-all",
     "test-all": "npm run load-test && npm run security-test",
-    "generate-reports": "npm run report && echo 'Security report: security-results.xml'"
+    "load-test": "k6 run LoadTests/PortfolioSummaryMock.js",
+    "security-test": "k6 run SecurityTests/PortFolioSummarySecurity.js",
+    "clean": "rm -rf Reports/*",
+    "test-clean": "npm run clean && npm run test-all",
+    "open-reports": "open Reports/load-report.html && open Reports/security-report.html"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Nishanthini R S",
   "devDependencies": {
-    "concurrently": "^9.2.1",
-    "k6-html-reporter": "^1.0.5",
     "k6-junit": "^1.2.0"
   }
 }
